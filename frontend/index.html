@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constellation Fortune Teller</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">✨ Constellation Fortune Teller ✨</h1>
+            <p class="subtitle">Discover your cosmic destiny through the stars</p>
+            <div id="userInfo" class="user-info hidden">
+                <span id="usernameDisplay"></span>
+                <button id="logoutButton" class="logout-button">Logout</button>
+            </div>
+        </header>
+
+        <!-- Login/Register Section -->
+        <div id="authSection" class="auth-section">
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-auth-tab="login">Login</button>
+                    <button class="auth-tab" data-auth-tab="register">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <div id="loginForm" class="auth-form">
+                    <h2>Welcome Back</h2>
+                    <p class="auth-description">Sign in to access your fortune readings</p>
+                    
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="loginUsername" class="form-input" placeholder="Enter your username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div id="loginError" class="error-message hidden"></div>
+                    
+                    <button id="loginSubmit" class="auth-button">Login</button>
+                </div>
+
+                <!-- Register Form -->
+                <div id="registerForm" class="auth-form hidden">
+                    <h2>Create Account</h2>
+                    <p class="auth-description">Join us to unlock your cosmic journey</p>
+                    
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="registerUsername" class="form-input" placeholder="Choose a username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="registerEmail" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="registerPassword" class="form-input" placeholder="Choose a secure password (min 6 characters)" required>
+                    </div>
+                    
+                    <div id="registerError" class="error-message hidden"></div>
+                    
+                    <button id="registerSubmit" class="auth-button">Create Account</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main App Section (hidden until logged in) -->
+        <div id="mainApp" class="main-app hidden">
+            <!-- Navigation Tabs -->
+            <div class="navigation-tabs">
+                <button class="nav-tab active" data-tab="zodiac">Zodiac Fortune</button>
+                <button class="nav-tab" data-tab="chat">Chat with Celestia</button>
+            </div>
+
+            <div id="zodiacSelection" class="zodiac-selection">
+                <h2>Choose Your Zodiac Sign</h2>
+                <div class="zodiac-grid">
+                    <div class="zodiac-card" data-sign="aries">
+                        <div class="zodiac-icon">♈</div>
+                        <h3>Aries</h3>
+                        <p class="date-range">Mar 21 - Apr 19</p>
+                    </div>
+                    <div class="zodiac-card" data-sign="taurus">
+                        <div class="zodiac-icon">♉</div>
+                        <h3>Taurus</h3>
+                        <p class="date-range">Apr 20 - May 20</p>
+                    </div>
+                    <div class="zodiac-card" data-sign="gemini">
+                        <div class="zodiac-icon">♊</div>
+                        <h3>Gemini</h3>
+                        <p class="date-range">May 21 - Jun 20</p>
+                    </div>
+                    <div class="zodiac-card" data-sign="cancer">
+                        <div class="zodiac-icon">♋</div>
+                        <h3>Cancer</h3>
+                        <p class="date-range">Jun 21 - Jul 22</p>
+                    </div>
+                    <div class="zodiac-card" data-sign="leo">
+                        <div class="zodiac-icon">♌</div>
+                        <h3>Leo</h3>
+                        <p class="date-range">Jul 23 - Aug 22</p>
+                    </div>
+                    <div class="zodiac-card" data-sign="virgo">
+                        <div class="zodiac-icon">♍</div>
+                        <h3>Virgo</h3>
+                        <p class="date-range">Aug 23 - Sep 22</p>
+                    </div>
+                    <div class="zodiac-card" data-sign="libra">
+                        <div class="zodiac-icon">♎</div>
+                        <h3>Libra</h3>
+                        <p class="date-range">Sep 23 - Oct 22</p>
+                    </div>
+                    <div class="zodiac-card" data-sign="scorpio">
+                        <div class="zodiac-icon">♏</div>
+                        <h3>Scorpio</h3>
+                        <p class="date-range">Oct 23 - Nov 21</p>
+                    </div>
+                    <div class="zodiac-card" data-sign="sagittarius">
+                        <div class="zodiac-icon">♐</div>
+                        <h3>Sagittarius</h3>
+                        <p class="date-range">Nov 22 - Dec 21</p>
+                    </div>
+                    <div class="zodiac-card" data-sign="capricorn">
+                        <div class="zodiac-icon">♑</div>
+                        <h3>Capricorn</h3>
+                        <p class="date-range">Dec 22 - Jan 19</p>
+                    </div>
+                    <div class="zodiac-card" data-sign="aquarius">
+                        <div class="zodiac-icon">♒</div>
+                        <h3>Aquarius</h3>
+                        <p class="date-range">Jan 20 - Feb 18</p>
+                    </div>
+                    <div class="zodiac-card" data-sign="pisces">
+                        <div class="zodiac-icon">♓</div>
+                        <h3>Pisces</h3>
+                        <p class="date-range">Feb 19 - Mar 20</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="fortuneDisplay" class="fortune-display hidden">
+                <button id="backButton" class="back-button">← Back to Zodiac Signs</button>
+                
+                <div class="fortune-header">
+                    <div class="fortune-icon" id="fortuneIcon"></div>
+                    <h2 id="fortuneTitle"></h2>
+                    <p class="fortune-date" id="fortuneDate"></p>
+                </div>
+
+                <div class="fortune-content">
+                    <div class="fortune-section">
+                        <h3>🔮 Today's Fortune</h3>
+                        <p id="dailyFortune" class="fortune-text"></p>
+                    </div>
+
+                    <div class="fortune-section">
+                        <h3>💫 Cosmic Energy</h3>
+                        <div class="energy-bars">
+                            <div class="energy-item">
+                                <span>Love</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="loveMeter"></div>
+                                </div>
+                            </div>
+                            <div class="energy-item">
+                                <span>Career</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="careerMeter"></div>
+                                </div>
+                            </div>
+                            <div class="energy-item">
+                                <span>Health</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="healthMeter"></div>
+                                </div>
+                            </div>
+                            <div class="energy-item">
+                                <span>Finance</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="financeMeter"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fortune-grid">
+                        <div class="fortune-section">
+                            <h3>🍀 Lucky Numbers</h3>
+                            <div id="luckyNumbers" class="lucky-numbers"></div>
+                        </div>
+
+                        <div class="fortune-section">
+                            <h3>🎨 Lucky Color</h3>
+                            <div id="luckyColor" class="lucky-color"></div>
+                        </div>
+                    </div>
+
+                    <div class="fortune-section">
+                        <h3>💝 Compatibility</h3>
+                        <p id="compatibility" class="compatibility-text"></p>
+                    </div>
+
+                    <div class="fortune-section">
+                        <h3>⚠️ Advice</h3>
+                        <p id="advice" class="advice-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Interface -->
+            <div id="chatInterface" class="chat-interface hidden">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <div class="fortune-teller-info">
+                            <div class="avatar">🔮</div>
+                            <div>
+                                <h3>Celestia</h3>
+                                <p class="status">Your Mystical Guide</p>
+                            </div>
+                        </div>
+                        <button id="clearChatButton" class="clear-chat-button" title="Clear conversation">🗑️</button>
+                    </div>
+
+                    <div id="chatMessages" class="chat-messages">
+                        <div class="message ai-message">
+                            <div class="message-avatar">🔮</div>
+                            <div class="message-content">
+                                <p>Greetings, seeker of cosmic wisdom! ✨ I am Celestia, your mystical guide through the stars and beyond.</p>
+                                <p>I can provide insights on your zodiac sign, read your fortune, offer guidance on love, career, health, and finances, or simply converse about the mysteries of the universe.</p>
+                                <p>Tell me, what brings you to seek the wisdom of the stars today?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <input 
+                            type="text" 
+                            id="chatInput" 
+                            class="chat-input" 
+                            placeholder="Ask Celestia about your fortune..."
+                            autocomplete="off"
+                        />
+                        <button id="sendButton" class="send-button">
+                            <span class="send-icon">➤</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
